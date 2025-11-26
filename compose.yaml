@@ -57,10 +57,12 @@ services:
       - .env
       - .env.dev
     volumes:
-      - database_data:/var/lib/mysql:rw
+      - midved-symfony-docker_database_data:/var/lib/mysql:rw
+#      - database_data:/var/lib/mysql:rw
+
 
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/mysql:rw
+#       - ./docker/db/data:/var/lib/mysql:rw
 
 ###< doctrine/doctrine-bundle ###
 
@@ -71,5 +73,7 @@ volumes:
 ###< symfony/mercure-bundle ###
 
 ###> doctrine/doctrine-bundle ###
-  database_data:
+#  database_data:
 ###< doctrine/doctrine-bundle ###
+  midved-symfony-docker_database_data:
+    external: true
