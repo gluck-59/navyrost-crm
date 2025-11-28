@@ -3,25 +3,33 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-    <h1>{{ title }}</h1>
+    <h1 class="mb-5">{{ title }}</h1>
 
     {{ form_start(form) }}
-        <div class="mb-3">
-            {{ form_label(form.name) }}
+    <div class="row mb-3">
+        <div class="col-12 col-md-3 mb-5">
+            <h6 class="text-muted">{{ form_label(form.name) }}</h6>
             {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.name) }}
         </div>
-        <div class="mb-3">
-            {{ form_label(form.data) }}
-            {{ form_widget(form.data, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.data) }}
-        </div>
-        <div class="mb-3">
-            {{ form_label(form.parent) }}
+        <div class="col-12 col-md-3 mb-0">
+            <h6 class="text-muted"> {{ form_label(form.parent) }} </h6>
             {{ form_widget(form.parent, {'attr': {'class': 'form-control selectpicker', 'data-live-search': 'true'}}) }}
             {{ form_errors(form.parent) }}
         </div>
-        <button type="submit" class="btn btn-success">Сохранить</button>
-        <a href="{{ path('customer_index') }}" class="btn btn-danger">Отмена</a>
+    </div>
+    <div class="row mb-3">
+        <div class="col-12 col-md-6 mb-3">
+            <h6 class="text-muted">{{ form_label(form.data) }} </h6>
+            {{ form_widget(form.data, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.data) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 col-md-3">
+            <button type="submit" class="btn btn-success">Сохранить</button>
+            <a href="{{ path('customer_index') }}" class="btn btn-danger">Отмена</a>
+        </div>
+    </div>
     {{ form_end(form) }}
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}Редактирование пользователя{% endblock %}
 
 {% block body %}
-    <h1>Редактирование «{{ user.username }}»</h1>
+    <h1 class="mb-5">Редактирование «{{ user.username }}»</h1>
 
     {# применяем тему для этого конкретного шаблона, если нужно дополнительно #}
     {% form_theme form 'bootstrap_5_layout.html.twig' %}
@@ -11,18 +11,18 @@
     {{ form_start(form) }}
 
     <div class="row mb-2">
-        <div class="col-md-3">
-            {{ form_label(form.username) }}
+        <div class="col-md-3 mb-3">
+            <h6 class="text-muted">{{ form_label(form.username) }}</h6>
             {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.username) }}
         </div>
-        <div class="col-md-3">
-            {{ form_label(form.password) }}
+        <div class="col-md-3 mb-3">
+            <h6 class="text-muted">{{ form_label(form.password) }}</h6>
             {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.password) }}
         </div>
-        <div class="col-md-3">
-            {{ form_label(form.roles) }}
+        <div class="col-md-3 mb-3">
+            <h6 class="text-muted">{{ form_label(form.roles) }}</h6>
             {% for child in form.roles %}
                 <div class="form-check form-check-inline">
                     {{ form_widget(child, {'attr': {'class': 'form-check-input'}}) }}

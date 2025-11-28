@@ -55,7 +55,7 @@ class RequestCreateType extends AbstractType
                 ],
             ])
             ->add('name', TextType::class, [
-                'label' => 'Название работ',
+                'label' => 'Название заявки',
                 'attr' => [
                     'placeholder' => 'краткое описание заявки',
                 ],

@@ -2,44 +2,6 @@
     --bs-font-sans-serif: "PT Sans", "Noto Sans", "Liberation Sans", Arial, sans-serif;
     --bs-navbar-brand-padding-y: 0;
 }
-a, button {
-    /*color: #0a53be;*/
-}
-a:not(:hover), button:not(:hover) {
-    text-decoration: none!important;
-}
-.popover {
-    max-width: 500px !important;
-}
-
-
-/* navbar */
-@media (min-width: 1200px) {
-    .navbar{
-        max-width: 1920px;
-    }
-}
-.navbar-inverse {
-    /*background-color: #2f1500;*/
-    border-color: #080808;
-    padding: 0;
-}
-.navbar-inverse .navbar-brand {
-    font-weight: 100;
-    font-size: xx-large;
-    padding: 0;
-}
-.navbar-inverse .navbar-header>.navbar-brand, .navbar-inverse .navbar-nav>li>a {
-    color: #93817b;
-    /*font-weight: bold;*/
-}
-.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
-    color: #edd8cb;
-    background-color: #3c2109;
-}
-
-
-
 .pt-sans-regular {
     font-family: "PT Sans", sans-serif;
     font-weight: 400;
@@ -63,6 +25,57 @@ a:not(:hover), button:not(:hover) {
     font-weight: 700;
     font-style: italic;
 }
+
+
+a, button {
+    /*color: #0a53be;*/
+}
+a:not(:hover), button:not(:hover) {
+    text-decoration: none!important;
+}
+.popover {
+    max-width: 500px !important;
+}
+
+
+/* navbar */
+@media (min-width: 1200px) {
+    .navbar{
+        max-width: 1920px;
+    }
+}
+.navbar-inverse {
+    /*background-color: #2f1500;*/
+    border-color: #080808;
+    padding: 0;
+}
+.navbar-inverse a.navbar-brand {
+    font-weight: 100;
+    font-size: calc(1.25rem + 0.8vw);
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+    margin-right: 0.5rem;
+}
+.navbar-inverse .navbar-header>.navbar-brand, .navbar-inverse .navbar-nav>li>a {
+    color: #93817b;
+    /*font-weight: bold;*/
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #edd8cb;
+    background-color: #3c2109;
+}
+
+h6.text-muted {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    /*margin-bottom: 0;*/
+    line-height: 1;
+}
+
+
 
 #footer {
     position: fixed;

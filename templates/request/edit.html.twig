@@ -9,7 +9,7 @@
 
     {{ form_start(form) }}
     {{ form_widget(form.name, {'attr': {'style': 'display: none'}}) }}
-    <h1 class="h3 d-flex justify-content-start align-items-start gap-2 mb-3">{{ requestEntity.id }}.&nbsp;<span id="requestTitle" class="d-inline-flex align-items-center gap-2" contenteditable="true" data-request-title="true">{{ requestEntity.name }}</span><i class="bi bi-pencil-square text-secondary" style="font-size: small"></i>&nbsp;<span id="requestBalance" class="badge {{ balanceClass }}">{{ balanceText }}</span>&nbsp;<span>{{ form_widget(form.status, {'attr': {'class': 'badge bg-primary dropdown-toggle'}}) }}</span></h1>
+    <h1 class="h3 d-flex justify-content-start align-items-start gap-0 mb-3"><span id="requestTitle" class="d-inline-flex align-items-center gap-1" contenteditable="true" data-request-title="true">{{ requestEntity.name }}</span><i class="bi bi-pencil-square text-secondary" style="font-size: small"></i>&nbsp;<span id="requestBalance" class="badge {{ balanceClass }}">{{ balanceText }}</span>&nbsp;<span>{{ form_widget(form.status, {'attr': {'class': 'badge bg-primary dropdown-toggle'}}) }}</span></h1>
 
     <div class="row g-3 mb-4">
         <div class="col-md-4">
@@ -31,11 +31,11 @@
         <div id="prihod-rashod" class="d-grid mb-3">
             <div class="row">
                 <div class="col-6" style="text-align: end;">
-                    <div class="legend text-muted">Расход</div>
+                    <h6 class="legend text-muted">Расход</h6>
                     <h1><b id="rashod" class="text-danger" data-payment-expense><span class="spinner-border" role="status" aria-hidden="true"></span></b></h1>
                 </div>
                 <div class="col-6">
-                    <div class="legend text-muted">Приход</div>
+                    <h6 class="legend text-muted">Приход</h6>
                     <h1><b id="prihod" class="text-success" data-payment-income><span class="spinner-border" role="status" aria-hidden="true"></span></b></h1>
                 </div>
             </div>
@@ -52,9 +52,9 @@
         </div>
     </div>
 
-
-    <div class="mb-3 col-md-4">
-        {{ form_row(form.notes) }}
+    <div class="mb-3 col-md-5">
+        <h6 class="text-muted">{{ form_label(form.notes) }}</h6>
+        {{ form_widget(form.notes) }}
     </div>
 
     <button type="submit" class="btn btn-lg btn-success mb-4">Сохранить изменения</button>
