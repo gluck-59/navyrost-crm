@@ -9,18 +9,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" data-payment-modal-body="true">
+{#{{ prettyDump(modalPaymentRequests) }}#}
                 <div class="mb-3 {{ modalShowMainFields ? '' : 'd-none' }}" data-payment-main-fields="true">
                     <div class="row g-2 align-items-end">
                         <div class="col-12 col-lg-7">
                             <h6 class="text-muted form-label">Заявка</h6>
                             <select
                                 id="paymentModalRequestSelect"
-                                class="form-select"
+                                class="form-select selectpicker"
                                 data-payment-request-select="true"
                                 data-live-search="true"
-{#                                data-show-subtext="true"#}
+                                data-show-subtext="true"
                             >
-                                <option value="" selected disabled>Выберите заявку</option>
+                                <option value="" disabled>Выберите заявку</option>
                                 {% for requestItem in modalPaymentRequests %}
                                     <option value="{{ requestItem.id }}" data-subtext="{{ requestItem.customer }}">{{ requestItem.label }}</option>
                                 {% endfor %}
@@ -186,7 +187,7 @@
                     if (trigger?.dataset.paymentSource === 'main') {
                         extraFields?.classList.remove('d-none');
                         paymentModalEl.dataset.paymentSource = 'main';
-                        refreshSelectPicker();
+                        // refreshSelectPicker();
                     } else {
                         extraFields?.classList.add('d-none');
                         paymentModalEl.dataset.paymentSource = 'request';

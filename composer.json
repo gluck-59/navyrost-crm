@@ -11,14 +11,13 @@
         "ext-iconv": "*",
         "doctrine/dbal": "^3.10.3",
         "doctrine/doctrine-bundle": "^2.18.1",
-        "doctrine/doctrine-migrations-bundle": "^3.6",
-        "doctrine/orm": "^3.5.3",
+        "doctrine/doctrine-migrations-bundle": "^3.7",
+        "doctrine/orm": "^3.5.7",
         "runtime/frankenphp-symfony": "^0.2.0",
-        "snapappointments/bootstrap-select": ">=1.13.18",
         "symfony/asset": "7.3.*",
         "symfony/console": "7.3.*",
         "symfony/dotenv": "7.3.*",
-        "symfony/flex": "^2.9.0",
+        "symfony/flex": "^2.10.0",
         "symfony/form": "7.3.*",
         "symfony/framework-bundle": "7.3.*",
         "symfony/runtime": "7.3.*",
@@ -30,14 +29,14 @@
         "symfonycasts/verify-email-bundle": ">=1.17.4",
         "twbs/bootstrap": "^5.3.8",
         "twbs/bootstrap-icons": "^1.13.1",
-        "twig/extra-bundle": "^2.12|^3.22",
+        "twig/extra-bundle": "^2.12|^3.22.1",
         "twig/twig": "^2.12|^3.22.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^12.4.2",
+        "phpunit/phpunit": "^12.4.4",
         "symfony/browser-kit": "7.3.*",
         "symfony/css-selector": "7.3.*",
-        "symfony/maker-bundle": "^1.64",
+        "symfony/maker-bundle": "^1.65",
         "symfony/stopwatch": "7.3.*",
         "symfony/web-profiler-bundle": "7.3.*"
     },
@@ -82,15 +81,21 @@
             "@auto-scripts",
             "rm -rf public/assets/bootstrap",
             "cp -r vendor/twbs/bootstrap/dist public/assets/bootstrap",
-            "rm -rf public/assets/bootstrap-select",
-            "cp -r assets/vendor/bootstrap-select public/assets/bootstrap-select"
+
+            "rm -rf public/assets/bootstrap-icons",
+            "mkdir public/assets/bootstrap-icons/",
+            "cp -r vendor/twbs/bootstrap-icons/font/fonts public/assets/bootstrap-icons/fonts/",
+            "cp vendor/twbs/bootstrap-icons/font/bootstrap-icons.css public/assets/bootstrap-icons/"
         ],
         "post-update-cmd": [
             "@auto-scripts",
             "rm -rf public/assets/bootstrap",
             "cp -r vendor/twbs/bootstrap/dist public/assets/bootstrap",
-            "rm -rf public/assets/bootstrap-select",
-            "cp -r assets/vendor/bootstrap-select public/assets/bootstrap-select"
+
+            "rm -rf public/assets/bootstrap-icons",
+            "mkdir public/assets/bootstrap-icons/",
+            "cp -r vendor/twbs/bootstrap-icons/font/fonts public/assets/bootstrap-icons/fonts/",
+            "cp vendor/twbs/bootstrap-icons/font/bootstrap-icons.css public/assets/bootstrap-icons/"
         ]
     },
     "conflict": {
