@@ -159,13 +159,11 @@
                     }
 
                     const color = direction === 0 ? 'rgba(193, 84, 84, 0.6)' : 'rgba(82, 169, 82, 0.6)';
-                    const modalLabel = direction === 0 ? 'Расход' : 'Приход';
                     amountInput.style.borderColor = color;
                     keyboardKeys.forEach((keyButton) => {
                         keyButton.style.backgroundColor = color;
                         keyButton.style.borderColor = color;
                     });
-                    // $('#modalPrihodRashodLabel').text(modalLabel);
                 };
 
                 const refreshSelectPicker = () => {
