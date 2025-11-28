@@ -83,10 +83,10 @@ class EquipmentType extends AbstractType
                 ],
             ])
             ->add('notes', TextareaType::class, [
-                'label' => 'Примечания',
+                'label' => 'Примечание',
                 'required' => false,
                 'empty_data' => '',
-                'attr' => ['rows' => 4],
+                'attr' => ['rows' => 1],
             ])
         ;
     }

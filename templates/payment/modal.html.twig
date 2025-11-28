@@ -12,7 +12,7 @@
                 <div class="mb-3 {{ modalShowMainFields ? '' : 'd-none' }}" data-payment-main-fields="true">
                     <div class="row g-2 align-items-end">
                         <div class="col-12 col-lg-7">
-                            <label for="paymentModalRequestSelect" class="form-label">Заявка</label>
+                            <h6 class="text-muted form-label">Заявка</h6>
                             <select
                                 id="paymentModalRequestSelect"
                                 class="form-select"
@@ -27,7 +27,7 @@
                             </select>
                         </div>
                         <div class="col-12 col-lg-5">
-                            <span class="form-label d-block">Статья</span>
+                            <h6 class="text-muted form-label d-block">Статья</h6>
                             <div class="btn-group" role="group" aria-label="Тип платежа">
                                 <input type="radio" class="btn-check" name="paymentModalType" id="paymentModalTypeWork" value="1" autocomplete="off" data-payment-type-option="true" checked>
                                 <label class="btn btn-outline-success" for="paymentModalTypeWork">Работа</label>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="paymentModalAmount" class="form-label">Сумма</label>
+                    <h6 class="text-muted form-label">Сумма</h6>
                     <input
                         type="number"
                         pattern="[0-9]*"
@@ -50,8 +50,6 @@
                         data-payment-amount="true"
                     >
                 </div>
-
-                <a href="#" class="btn btn-success calculate d-none d-md-block" >Сохранить</a>
 
                 <div id="keyboard" class="d-block d-md-none">
                     <div class="row-fluid">
@@ -76,16 +74,19 @@
                     </div>
                 </div>
 
-
-                <div class="mb-3">
-                    <label for="paymentModalNote" class="form-label">Комментарий</label>
+                <div class="mb-3 mb-3">
+                    <h6 class="text-muted form-label">Комментарий</h6>
                     <input
                         type="text"
                         class="form-control"
                         id="paymentModalNote"
                         name="note"
                         maxlength="14"
-                        data-payment-note="true"
+                        data-payment-note="true">
+                </div>
+
+                <div class="mb-3">
+                    <a href="#" class="btn btn-success calculate d-none d-md-block" >Сохранить</a>
                 </div>
             </div>
         </div>
@@ -158,11 +159,13 @@
                     }
 
                     const color = direction === 0 ? 'rgba(193, 84, 84, 0.6)' : 'rgba(82, 169, 82, 0.6)';
+                    const modalLabel = direction === 0 ? 'Расход' : 'Приход';
                     amountInput.style.borderColor = color;
                     keyboardKeys.forEach((keyButton) => {
                         keyButton.style.backgroundColor = color;
                         keyButton.style.borderColor = color;
                     });
+                    // $('#modalPrihodRashodLabel').text(modalLabel);
                 };
 
                 const refreshSelectPicker = () => {

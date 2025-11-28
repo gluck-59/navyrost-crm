@@ -34,7 +34,7 @@ class RequestEditType extends AbstractType
             ->add('notes', TextareaType::class, [
                 'label' => 'Подробное описание заявки',
                 'required' => false,
-                'attr' => ['rows' => 2, 'class' => 'form-control'],
+                'attr' => ['rows' => 4, 'class' => 'form-control'],
             ])
         ;
     }

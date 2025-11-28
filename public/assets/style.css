@@ -2,6 +2,31 @@
     --bs-font-sans-serif: "PT Sans", "Noto Sans", "Liberation Sans", Arial, sans-serif;
     --bs-navbar-brand-padding-y: 0;
 }
+.pt-sans-regular {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.pt-sans-bold {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.pt-sans-regular-italic {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.pt-sans-bold-italic {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+
 a, button {
     /*color: #0a53be;*/
 }
@@ -38,31 +63,14 @@ a:not(:hover), button:not(:hover) {
     background-color: #3c2109;
 }
 
-
-
-.pt-sans-regular {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+h6.text-muted {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    /*margin-bottom: 0;*/
+    line-height: 1;
 }
 
-.pt-sans-bold {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
 
-.pt-sans-regular-italic {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 400;
-    font-style: italic;
-}
-
-.pt-sans-bold-italic {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-}
 
 #footer {
     position: fixed;

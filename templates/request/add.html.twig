@@ -5,29 +5,33 @@
 {% block body %}
     <h1 class="h3 mb-4">{{ title }}</h1>
     {{ form_start(form) }}
-        <div class="row g-3 mb-3">
+        <div class="row g-4 mb-3">
             <div class="col-12 col-md-4">
-                {{ form_label(form.customer) }}
+                <h6 class="text-muted">{{ form_label(form.name) }}</h6>
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.name) }}
+            </div>
+            <div class="col-12 col-md-4">
+                <h6 class="text-muted">{{ form_label(form.customer) }}</h6>
                 {{ form_widget(form.customer, {'attr': {'class': 'form-select', 'data-live-search': 'true'}}) }}
                 {{ form_errors(form.customer) }}
             </div>
             <div class="col-12 col-md-4">
-                {{ form_label(form.equipment) }}
+                <h6 class="text-muted">{{ form_label(form.equipment) }}</h6>
                 {{ form_widget(form.equipment, {'attr': {'class': 'form-select', 'data-live-search': 'true'}}) }}
                 {{ form_errors(form.equipment) }}
             </div>
-            <div class="col-12 col-md-4">
-                {{ form_label(form.name) }}
-                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
-                {{ form_errors(form.name) }}
+            <div class="mb-3">
+                <h6 class="text-muted">{{ form_label(form.notes) }}</h6>
+                {{ form_widget(form.notes, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.notes) }}
             </div>
         </div>
-        <div class="mb-3">
-            {{ form_label(form.notes) }}
-            {{ form_widget(form.notes, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.notes) }}
+        <div class="row g-4 mb-3">
+            <div class="col-12 col-md-3">
+                <button class="btn btn-success" type="submit">Создать</button>
+                <a class="btn btn-outline-secondary" href="{{ path('request_index') }}">Отмена</a>
+            </div>
         </div>
-        <button class="btn btn-success" type="submit">Создать</button>
-        <a class="btn btn-outline-secondary" href="{{ path('request_index') }}">Отмена</a>
     {{ form_end(form) }}
 {% endblock %}
