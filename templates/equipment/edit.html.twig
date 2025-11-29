@@ -8,7 +8,13 @@
         <div class="row mb-4">
             <div class="col-12 col-md-3 mb-3">
                 <h6 class="text-muted">{{ form_label(form.customer)|striptags }}</h6>
-                {{ form_widget(form.customer, {'attr': {'class': 'form-control selectpicker', 'data-live-search': 'true'}}) }}
+                {% do form.customer.setRendered %}
+                <select id="{{ form.customer.vars.id }}" name="{{ form.customer.vars.full_name }}" class="form-control selectpicker" data-live-search="true">
+                    <option value="" disabled selected>Выберите клиента</option>
+                    {% for choice in form.customer.vars.choices %}
+                        <option value="{{ choice.value }}" {% if form.customer.vars.value == choice.value %}selected{% endif %}>{{ choice.label }}</option>
+                    {% endfor %}
+                </select>
                 {{ form_errors(form.customer) }}
             </div>
             <div class="col-12 col-md-3 mb-3">

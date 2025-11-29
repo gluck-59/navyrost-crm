@@ -16,7 +16,13 @@
         <div class="col-12 col-md-3">
             <div class="mb-3">
                 <h6 class="text-muted">{{ form_label(form.parent) }}</h6>
-                {{ form_widget(form.parent, {'attr': {'class': 'form-control selectpicker', 'data-live-search': 'true'}}) }}
+                {% do form.parent.setRendered %}
+                <select id="{{ form.parent.vars.id }}" name="{{ form.parent.vars.full_name }}" class="form-control selectpicker" data-live-search="true">
+                    <option value="" disabled selected>Родительская организация</option>
+                    {% for choice in form.parent.vars.choices %}
+                        <option value="{{ choice.value }}" {% if form.parent.vars.value == choice.value %}selected{% endif %}>{{ choice.label }}</option>
+                    {% endfor %}
+                </select>
                 {{ form_errors(form.parent) }}
             </div>
         </div>

@@ -17,7 +17,7 @@
                                 <th>Заказчик</th>
                                 <th>Оборудование</th>
                                 <th>Заявка</th>
-                                <th class="text-end">Сумма, ₽</th>
+                                <th class="text-end">₽</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,12 +40,7 @@
 
             <hr class="my-4">
 
-            <h2 class="mb-3">Примеры отчетов</h2>
-            <ul class="list-group">
-                <li class="list-group-item"><a href="{{ path('report_debitorka') }}">Дебиторская задолженность</a></li>
-                <li class="list-group-item"><a href="{{ path('report_total_payed') }}">Оплата по клиентам</a></li>
-                <li class="list-group-item"><a href="{{ path('report_salary_by_month') }}">Зарплата по месяцам</a></li>
-            </ul>
+            {{ include('report/report_sample.html.twig') }}
         </div>
     </div>
 {% endblock %}

@@ -59,11 +59,7 @@ class SecurityController extends AbstractController
     public function logout(Security $security): Response
     {
         $security->logout(false);
-        return $this->render('security/login.html.twig', [
-            'last_username' => '',
-            'title' => 'Войдите',
-            'error' => '',
-        ]);
+        return $this->redirect('/');
     }
 
 }
