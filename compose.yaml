@@ -56,8 +56,8 @@ services:
       - .env
       - .env.dev
     volumes:
-      - midved-symfony-docker_database_data:/var/lib/mysql:rw
-#      - database_data:/var/lib/mysql:rw
+#      - navyrost-symfony-docker_database_data:/var/lib/mysql:rw
+      - database_data:/var/lib/mysql:rw
 
 
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
@@ -68,11 +68,7 @@ services:
 volumes:
   caddy_data:
   caddy_config:
-###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
 
-###> doctrine/doctrine-bundle ###
-#  database_data:
-###< doctrine/doctrine-bundle ###
-  midved-symfony-docker_database_data:
-    external: true
+  database_data:
+#  navyrost-symfony-docker_database_data:
+#    external: true

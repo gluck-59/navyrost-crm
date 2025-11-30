@@ -135,7 +135,6 @@ final class ReportService
 
         $whereSql = 'WHERE ' . implode(' AND ', $conditions);
         $finalSql = sprintf($sql, $whereSql);
-
         $rows = $connection->executeQuery($finalSql, $params, $types)->fetchAllAssociative();
 
         $monthNames = [
