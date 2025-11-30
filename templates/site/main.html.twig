@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block body %}
+{#    <h2>{% if title is defined %} {{ title }} {% endif %}</h2>#}
+    <h2 class="mb-3">{{ title|default('') }}</h2>
+    <div class="row">
+        <div class="d-inline-grid">
+            <div class="col-12 col-lg-3">
+                <a type="button" href="{{ path('request_add') }}" class="w-100 mb-2 btn btn-primary btn-lg btn-block btn-open-modal">Новая заявка</a>
+<!--                <button type="button" class="btn btn-warning btn-lg btn-block btn-open-modal"  data-bs-toggle="modal" data-direction="1" data-bs-target="#modalAutoDistribution">Авторазноска платежа&nbsp;&beta;</button>-->
+                <button
+                    type="button"
+                    class="w-100 mb-2 btn btn-success btn-lg btn-block btn-open-modal"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalPrihodRashod"
+                    data-payment-source="main"
+                    data-direction="1"
+                >Новый приход</button>
+                <button
+                    type="button"
+                    class="w-100 mb-2 btn btn-danger btn-lg btn-block btn-open-modal"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalPrihodRashod"
+                    data-payment-source="main"
+                    data-direction="0"
+                >Новый расход</button>
+<!--				<a href="https://calendar.google.com/calendar/u/0/r" target="_blank" type="button" class="btn btn-info btn-lg btn-block">Расписание</a>-->
+            </div>
+        </div>
+    </div>
+
+    {{ include('payment/modal.html.twig', {
+        paymentRequests: paymentRequests|default([]),
+        showExtraFields: true,
+    }) }}
+
+{%  endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,10 @@
+twig:
+    file_name_pattern: '*.twig'
+    form_themes: ['bootstrap_5_layout.html.twig']
+#    debug: true
+#    cache: false      # отключить кэш Twig
+    auto_reload: true # пересобирать шаблоны при каждом изменении
+
+when@test:
+    twig:
+        strict_variables: true

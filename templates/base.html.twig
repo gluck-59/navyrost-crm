@@ -1,0 +1,91 @@
+{{ include('_header.html.twig') }}
+{% set loginArr = ['login', 'index'] %}
+{% set route = app.request.attributes.get('_route') %}
+    <body>
+    {% if route not in loginArr %}
+            <header class="mb-4">
+                <nav class="navbar navbar-inverse navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                            <img id="logo" src="/img/logo-medved.png">
+                        </a>
+                        <a class="navbar-brand" href="#">{{ title|default('Навырост') }}</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="mx-3 my-2 {% if route == 'main' %} active{% endif %}"><a href="/"><i class="bi bi-house-door-fill"></i> Главная</a></li>
+                                <li class="mx-3 my-2 {% if route starts with 'request_' %} active{% endif %}"><a href="/request"><i class="bi bi-list-task"></i> Заявки</a></li>
+                                <li class="mx-3 my-2 {% if route starts with 'equipment_' %} active{% endif %}"><a href="{{ url('equipment_index') }}"><i class="bi bi-gear-wide-connected"></i> Оборудование</a></li>
+                                <li class="mx-3 my-2 {% if route starts with 'customer_' %} active{% endif %}"><a href="{{ url('customer_index') }}"><i class="bi bi-building-gear"></i> Клиенты</a></li>
+                                <li class="mx-3 my-2 {% if route starts with 'report_' %} active{% endif %}"><a href="{{ path('report_index') }}"><i class="bi bi-list-ol"></i> Отчеты</a></li>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li class="mx-3 my-2 {% if route starts with 'user_' %} active{% endif %}"><a href="/user/list"><i class="bi bi-person-add"></i> Юзеры</a></li>
+                                    <li class="mx-3 my-2 {% if route == 'register' %} active{% endif %}"><a href="{{ url('phpinfo') }}"><i class="bi bi-person"></i> Phpinfo</a></li>
+                                {% endif %}
+                            </ul>
+                            {% if app.user %}
+                                <ul class="navbar-nav me1-auto mb-2 mb-lg-0 dropdown dropstart">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ app.user.userIdentifier }}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="/user/change-password">Сменить пароль</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="{{ path('logout') }}">Выход</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            {% endif %}
+
+{#                            <div class="dropdown dropstart">#}
+{#                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">#}
+{#                                    Раскрывающееся влево меню#}
+{#                                </a>#}
+{#                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">#}
+{#                                    <li><a class="dropdown-item" href="#">Действие 1</a></li>#}
+{#                                    <li><a class="dropdown-item" href="#">Действие 2</a></li>#}
+{#                                </ul>#}
+{#                            </div>#}
+
+
+
+                        </div>
+                    </div>
+                </nav>
+            </header>
+        {% endif %}
+
+        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="toast align-items-center text-bg-{{ label }} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                {{ message }}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+
+{#route: {{ route }}#}
+        <div class="container">
+        {% block body %}
+        {% endblock %}
+        </div>
+        {% if route not in loginArr %}
+            {{ include('_footer.html.twig') }}
+        {% endif %}
+    </body>
+</html>
+
+
+

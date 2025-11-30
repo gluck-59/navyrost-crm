@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1 class="mb-3">{{ title }}</h1>
+    {{ form_start(form) }}
+    <div class="row g-4 mb-3">
+        <div class="col-12 col-md-3">
+            <div class="mb-3">
+                <h6 class="text-muted">{{ form_label(form.name) }}</h6>
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.name) }}
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="mb-3">
+                <h6 class="text-muted">{{ form_label(form.parent) }}</h6>
+                {% do form.parent.setRendered %}
+                <select id="{{ form.parent.vars.id }}" name="{{ form.parent.vars.full_name }}" class="form-control selectpicker" data-live-search="true">
+                    <option value="" disabled selected>Родительская организация</option>
+                    {% for choice in form.parent.vars.choices %}
+                        <option value="{{ choice.value }}" {% if form.parent.vars.value == choice.value %}selected{% endif %}>{{ choice.label }}</option>
+                    {% endfor %}
+                </select>
+                {{ form_errors(form.parent) }}
+            </div>
+        </div>
+    </div>
+    <div class="row g-4 mb-3">
+        <div class="col-12 col-md-6 mb-3">
+            <div class="mb-3">
+                <h6 class="text-muted">{{ form_label(form.data) }}</h6>
+                {{ form_widget(form.data, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.data) }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12 col-md-3">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+                <a href="{{ path('customer_index') }}" class="btn btn-danger">Отмена</a>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

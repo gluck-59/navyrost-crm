@@ -1,0 +1,129 @@
+:root {
+    --bs-font-sans-serif: "PT Sans", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+    --bs-navbar-brand-padding-y: 0;
+}
+.pt-sans-regular {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.pt-sans-bold {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.pt-sans-regular-italic {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.pt-sans-bold-italic {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+
+a, button {
+    /*color: #0a53be;*/
+}
+a:not(:hover), button:not(:hover) {
+    text-decoration: none!important;
+}
+.popover {
+    max-width: 500px !important;
+}
+
+
+/* navbar */
+@media (min-width: 1200px) {
+    .navbar{
+        max-width: 1920px;
+    }
+}
+.navbar-inverse {
+    /*background-color: #2f1500;*/
+    border-color: #080808;
+    padding: 0;
+}
+.navbar-inverse a.navbar-brand {
+    font-weight: 100;
+    font-size: calc(1.25rem + 0.8vw);
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+    margin-right: 0.5rem;
+}
+.navbar-inverse .navbar-header>.navbar-brand, .navbar-inverse .navbar-nav>li>a {
+    color: #93817b;
+    /*font-weight: bold;*/
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #edd8cb;
+    background-color: #3c2109;
+}
+
+h6.text-muted {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    /*margin-bottom: 0;*/
+    line-height: 1;
+}
+
+
+
+#footer {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
+/*request edit*/
+#prihod-rashod .btn.paymentEdit {
+    font-size: 1.5em;
+    padding: .7em 6px;
+    margin: 2px 0;
+    height: 70px;
+    width: 110px;
+}
+
+#paymentModalAmount {
+    zoom: 3;
+    border-color: white;
+    box-shadow: none;
+}
+
+/* экраная клава */
+div#keyboard {
+    text-align: center;
+    width: 100%;
+}
+div#keyboard .row-fluid {
+    margin: 7px 0;
+    display: flex;
+    gap: 8px;
+}
+
+div#keyboard .row-fluid > a.btn {
+    font-size: 3em;
+    color: whitesmoke;
+    border: solid 2px #6e6e6e;
+    height: 10vh;
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+}
+/* /экраная клава */
+
+#paymentHistory input[type="number"] {
+    width: 13ch;
+}
+
+

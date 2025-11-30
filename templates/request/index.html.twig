@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-3">{{ title }} <span class="text-muted small">список</span> </h1>
+    <a class="btn btn-success mb-3" href="{{ path('request_add') }}">Новая заявка</a>
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover mb-0">
+                    <thead>
+                        <tr>
+                            {% if is_admin %}<th>ID</th> {% endif %}
+                            <th scope="col">Станок/клиент</th>
+                            <th scope="col">Работы</th>
+                            <th scope="col">Баланс</th>
+                            <th scope="col" class="d-none d-md-table-cell">Созд./Изм.</th>
+{#                            <th scope="col">Обновлена</th>#}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if requests is empty %}
+                            <tr>
+                                <td colspan="{{ is_admin ? 5 : 4 }}" class="text-center py-4 text-muted">Заявок пока нет</td>
+                            </tr>
+                        {% else %}
+                            {% for request in requests %}
+                                <tr>
+                                    {% if is_admin %}<td>{{ request.id }}</td> {% endif %}
+                                    <td>
+                                        {% set equipmentName = request.equipment ? request.equipment.name : null %}
+                                        {% set customerName = request.customer ? request.customer.name : null %}
+                                        {% if equipmentName %}
+                                            {{ equipmentName }}
+                                                {% if customerName %} <br><span class="text-muted"> {{ customerName }} </span>
+                                            {% endif %}
+                                        {% elseif customerName %}
+                                            {{ customerName }}
+                                        {% else %}
+                                            —
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a class="fw-semibold text-decoration-none" href="{{ path('request_edit', {id: request.id}) }}">
+                                            <span class="badge text-bg-secondary">{{ request.statusLabel }}</span>
+                                            {{ request.name }}
+                                        </a>
+                                    </td>
+                                    {% set requestBalanceRaw = request_balances[request.id]|default(0) %}
+                                    {% set requestBalanceRub = (requestBalanceRaw / 100)|money_rub %}
+                                    {% set badgeClass = requestBalanceRaw > 0 ? 'bg-success' : (requestBalanceRaw < 0 ? 'bg-danger' : 'bg-secondary') %}
+                                    <td>
+                                        <span class="badge {{ badgeClass }}">
+                                            {{ requestBalanceRub }}
+                                        </span>
+                                    </td>
+                                    <td class="d-none d-md-table-cell">{{ request.created ? request.created|date('d.m.Y H:i') : '—' }}
+                                    <br><span class="text-muted">{{ request.updated ? request.updated|date('d.m.Y H:i') : '—' }}</span>
+                                    </td>
+{#                                    <td>{{ request.updated ? request.updated|date('d.m.Y H:i') : '—' }}</td>#}
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="php@11fa5298-0bad-4c2b-9c4e-e508332d920e">
+          <settings>
+            <list>
+              <mapping local-root="php" remote-root="docker exec -it symfony-docker-php-1 php" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>

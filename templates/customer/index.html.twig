@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1 class="mb-3">{{ title }}</h1>
+
+{#{{ prettyDump(customers) }}#}
+
+    <div class="mb-3">
+        <a href="{{ path('customer_add') }}" class="btn btn-success">Добавить клиента</a>
+    </div>
+
+    {% if customers is empty %}
+        <div class="alert alert-info">Клиентов пока нет</div>
+    {% else %}
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    {% if is_admin %}<th>ID</th> {% endif %}
+                    <th>Название</th>
+{#                    <th>Parent ID</th>#}
+                    {% if is_admin %}<th>Создатель</th>{% endif %}
+                    <th class="d-none d-md-table-cell">Доп. данные</th>
+                    <th class="text-end">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for c in customers %}
+                {% if c.parent is null %}
+                    {{ _self.render_row(c, 0, is_admin) }}
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% macro render_row(c, level, is_admin) %}
+    <tr>
+        {% if is_admin %}<td>{{ c.id }}</td>{% endif %}
+        <td>
+            <a href="{{ path('customer_show', {id: c.id}) }}" class="d-inline-block" style="padding-left: {{ level * 3 }}ch;">{{ c.name }}</a>
+        </td>
+        {% if is_admin %}<td>{{ c.creator ? c.creator.username : '—' }}</td>{% endif %}
+        <td class="d-none d-md-table-cell">{{ c.data }}</td>
+        <td class="text-end">
+            <a href="{{ path('customer_edit', {id: c.id}) }}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
+            <form method="post" action="{{ path('customer_delete', {id: c.id}) }}" class="d-inline" onsubmit="return confirm('Удалить клиента #{{ c.id }}?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete_customer_' ~ c.id) }}">
+                <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-x-circle"></i></button>
+            </form>
+        </td>
+    </tr>
+    {% for child in c.children %}
+        {{ _self.render_row(child, level + 1, is_admin) }}
+    {% endfor %}
+{% endmacro %}

@@ -1,45 +1,111 @@
 {
     "name": "symfony/skeleton",
     "type": "project",
-    "license": "proprietary",
-    "description": "Project description",
-    "minimum-stability": "dev",
+    "license": "MIT",
+    "description": "A minimal Symfony project recommended to create bare bones applications",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
-        "php": "^7.0",
-        "symfony/flex": "1.0.x-dev",
-        "symfony/framework-bundle": "3.3.x-dev",
-        "symfony/yaml": "3.3.x-dev"
+        "php": "^8.4",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "doctrine/dbal": "^3.10.3",
+        "doctrine/doctrine-bundle": "^2.18.1",
+        "doctrine/doctrine-migrations-bundle": "^3.7",
+        "doctrine/orm": "^3.5.7",
+        "runtime/frankenphp-symfony": "^0.2.0",
+        "symfony/asset": "7.3.*",
+        "symfony/console": "7.3.*",
+        "symfony/dotenv": "7.3.*",
+        "symfony/flex": "^2.10.0",
+        "symfony/form": "7.3.*",
+        "symfony/framework-bundle": "7.3.*",
+        "symfony/runtime": "7.3.*",
+        "symfony/security-bundle": "7.3.*",
+        "symfony/translation": "7.3.*",
+        "symfony/twig-bundle": "7.3.*",
+        "symfony/validator": "7.3.*",
+        "symfony/yaml": "7.3.*",
+        "symfonycasts/verify-email-bundle": ">=1.17.4",
+        "twbs/bootstrap": "^5.3.8",
+        "twbs/bootstrap-icons": "^1.13.1",
+        "twig/extra-bundle": "^2.12|^3.22.1",
+        "twig/twig": "^2.12|^3.22.0"
     },
     "require-dev": {
-        "symfony/dotenv": "3.3.x-dev"
+        "phpunit/phpunit": "^12.4.4",
+        "symfony/browser-kit": "7.3.*",
+        "symfony/css-selector": "7.3.*",
+        "symfony/maker-bundle": "^1.65",
+        "symfony/stopwatch": "7.3.*",
+        "symfony/web-profiler-bundle": "7.3.*"
     },
     "config": {
-        "flex-id": "",
-        "platform": {
-            "php": "7.0"
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
         },
+        "bump-after-update": true,
         "sort-packages": true
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
+            "App\\": "src/"
+        },
+        "files": [
+            "src/Debug/prettyDump.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
             "App\\Tests\\": "tests/"
         }
     },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*",
+        "symfony/polyfill-php82": "*"
+    },
     "scripts": {
-        "auto-scripts": [
-        ],
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "rm -rf public/assets/bootstrap",
+            "cp -r vendor/twbs/bootstrap/dist public/assets/bootstrap",
+
+            "rm -rf public/assets/bootstrap-icons",
+            "mkdir public/assets/bootstrap-icons/",
+            "cp -r vendor/twbs/bootstrap-icons/font/fonts public/assets/bootstrap-icons/fonts/",
+            "cp vendor/twbs/bootstrap-icons/font/bootstrap-icons.css public/assets/bootstrap-icons/"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "rm -rf public/assets/bootstrap",
+            "cp -r vendor/twbs/bootstrap/dist public/assets/bootstrap",
+
+            "rm -rf public/assets/bootstrap-icons",
+            "mkdir public/assets/bootstrap-icons/",
+            "cp -r vendor/twbs/bootstrap-icons/font/fonts public/assets/bootstrap-icons/fonts/",
+            "cp vendor/twbs/bootstrap-icons/font/bootstrap-icons.css public/assets/bootstrap-icons/"
         ]
     },
     "conflict": {
-        "symfony/symfony": "<3.3",
-        "symfony/framework-bundle": "<3.3",
-        "symfony/twig-bundle": "<3.3",
-        "symfony/debug": "<3.3"
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "7.3.*",
+            "docker": true
+        }
     }
 }

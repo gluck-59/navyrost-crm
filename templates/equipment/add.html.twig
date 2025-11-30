@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1 class="mb-3">{{ title }}</h1>
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col-12 col-md-3 mb-3">
+                <h6 class="text-muted">{{ form_label(form.customer) }}</h6>
+                {% do form.customer.setRendered %}
+                <select id="{{ form.customer.vars.id }}" name="{{ form.customer.vars.full_name }}" class="form-control selectpicker" data-live-search="true">
+                    <option value="" disabled selected>Выберите клиента</option>
+                    {% for choice in form.customer.vars.choices %}
+                        <option value="{{ choice.value }}" {% if form.customer.vars.value == choice.value %}selected{% endif %}>{{ choice.label }}</option>
+                    {% endfor %}
+                </select>
+                {{ form_errors(form.customer) }}
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <h6 class="text-muted">{{ form_label(form.name) }}</h6>
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.name) }}
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <h6 class="text-muted">{{ form_label(form.mark) }}</h6>
+                {{ form_widget(form.mark, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.mark) }}
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <h6 class="text-muted">{{ form_label(form.serial) }}</h6>
+                {{ form_widget(form.serial, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.serial) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 col-md-3 mb-3">
+                <h6 class="text-muted">{{ form_label(form.city) }}</h6>
+                {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.city) }}
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <h6 class="text-muted">{{ form_label(form.address) }}</h6>
+                {{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.address) }}
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <h6 class="text-muted">{{ form_label(form.notes) }}</h6>
+                {{ form_widget(form.notes, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.notes) }}
+            </div>
+        </div>
+        
+
+        
+        <button type="submit" class="btn btn-success">Сохранить</button>
+        <a href="{{ path('equipment_index') }}" class="btn btn-danger">Отмена</a>
+    {{ form_end(form) }}
+{% endblock %}

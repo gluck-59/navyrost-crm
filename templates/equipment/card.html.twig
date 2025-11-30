@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1>Редактирование «{{ equipment.name }}»</h1>
+    <dl class="row">
+        {% if is_admin %}
+            <dt class="col-sm-2">ID</dt>
+            <dd class="col-sm-9">{{ equipment.id }}</dd>
+        {% endif %}
+
+        <dt class="col-sm-2">Клиент</dt>
+        <dd class="col-sm-9">
+            <a href="{{ path('customer_show', {id: equipment.customer.id}) }}">{{ customer_name ?? '—' }}</a>
+        </dd>
+
+        <dt class="col-sm-2">Название</dt>
+        <dd class="col-sm-9">{{ equipment.name }}</dd>
+
+        <dt class="col-sm-2">Марка</dt>
+        <dd class="col-sm-9">{{ equipment.mark ?? '—' }}</dd>
+
+        <dt class="col-sm-2">Город</dt>
+        <dd class="col-sm-9">{{ equipment.city ?? '—' }}</dd>
+
+        <dt class="col-sm-2">Адрес объекта</dt>
+        <dd class="col-sm-9">{{ equipment.address ?? '—' }}</dd>
+
+        <dt class="col-sm-2">Серийный номер</dt>
+        <dd class="col-sm-9">{{ equipment.serial ?? '—' }}</dd>
+
+        <dt class="col-sm-2">Примечание</dt>
+        <dd class="col-sm-9"><pre class="mb-0">{{ equipment.notes ?? '—' }}</pre></dd>
+    </dl>
+
+    <a class="btn btn-outline-info" href="{{ path('equipment_index') }}">Назад</a>
+    <a class="btn btn-primary" href="{{ path('equipment_edit', {id: equipment.id}) }}">Редактировать</a>
+    <form method="post" action="{{ path('equipment_delete', {id: equipment.id}) }}" class="d-inline" onsubmit="return confirm('Удалить оборудование #{{ equipment.id }}?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete_equipment_' ~ equipment.id) }}">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+{% endblock %}
