@@ -37,7 +37,7 @@
                     <td class="d-none d-md-table-cell">{{ e.serial ?? '—' }}</td>
                     <td class="text-end">
                         <a href="{{ path('equipment_edit', {id: e.id}) }}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
-                        <form method="post" action="{{ path('equipment_delete', {id: e.id}) }}" class="d-inline" onsubmit="return confirm('Удалить оборудование #{{ e.id }}?');">
+                        <form method="post" action="{{ path('equipment_delete', {id: e.id}) }}" class="d-inline" onsubmit="return confirm('Удалить «{{ e.name }}»?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete_equipment_' ~ e.id) }}">
                             <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-x-circle"></i></button>
                         </form>

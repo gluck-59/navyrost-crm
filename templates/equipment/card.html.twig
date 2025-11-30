@@ -36,7 +36,7 @@
 
     <a class="btn btn-outline-info" href="{{ path('equipment_index') }}">Назад</a>
     <a class="btn btn-primary" href="{{ path('equipment_edit', {id: equipment.id}) }}">Редактировать</a>
-    <form method="post" action="{{ path('equipment_delete', {id: equipment.id}) }}" class="d-inline" onsubmit="return confirm('Удалить оборудование #{{ equipment.id }}?');">
+    <form method="post" action="{{ path('equipment_delete', {id: equipment.id}) }}" class="d-inline" onsubmit="return confirm('Удалить «{{ equipment.id }}»?');">
         <input type="hidden" name="_token" value="{{ csrf_token('delete_equipment_' ~ equipment.id) }}">
         <button type="submit" class="btn btn-danger">Удалить</button>
     </form>

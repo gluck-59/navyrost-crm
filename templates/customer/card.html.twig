@@ -67,7 +67,7 @@
 
     <a class="btn btn-outline-info" href="{{ path('customer_index') }}">Назад</a>
     <a class="btn btn-primary" href="{{ path('customer_edit', {id: customer.id}) }}">Редактировать</a>
-    <form method="post" action="{{ path('customer_delete', {id: customer.id}) }}" class="d-inline" onsubmit="return confirm('Удалить клиента #{{ customer.id }}?');">
+    <form method="post" action="{{ path('customer_delete', {id: customer.id}) }}" class="d-inline" onsubmit="return confirm('Удалить «{{ customer.name }}»?');">
         <input type="hidden" name="_token" value="{{ csrf_token('delete_customer_' ~ customer.id) }}">
         <button type="submit" class="btn btn-danger">Удалить</button>
     </form>

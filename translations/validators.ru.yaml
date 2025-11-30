@@ -1,1 +1,7 @@
-Invalid credentials.: "Ваш пользовательский текст ошибки"
+# See https://symfony.com/doc/current/validation/translations.html
+# See https://symfony.com/doc/current/reference/constraints.html
+# See https://github.com/symfony/validator/blob/7.1/Resources/translations/validators.ru.xlf
+
+'Please enter a password': Пожалуйста, введите пароль
+'Your password should be at least {{ limit }} characters': 'Пароль должен содержать не менее {{ limit }} символов'
+'There is already an account with this username': Пользователь с таким именем уже существует

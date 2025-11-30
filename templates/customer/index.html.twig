@@ -47,7 +47,7 @@
         <td class="d-none d-md-table-cell">{{ c.data }}</td>
         <td class="text-end">
             <a href="{{ path('customer_edit', {id: c.id}) }}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
-            <form method="post" action="{{ path('customer_delete', {id: c.id}) }}" class="d-inline" onsubmit="return confirm('Удалить клиента #{{ c.id }}?');">
+            <form method="post" action="{{ path('customer_delete', {id: c.id}) }}" class="d-inline" onsubmit="return confirm('Удалить «{{ c.name }}»?');">
                 <input type="hidden" name="_token" value="{{ csrf_token('delete_customer_' ~ c.id) }}">
                 <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-x-circle"></i></button>
             </form>
