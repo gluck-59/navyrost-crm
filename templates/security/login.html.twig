@@ -4,8 +4,8 @@
 
 {% block body %}
     <div class="d-flex container align-items-center justify-content-center" style="height: 100vh;">
-        <div class="row align-items-center" style="border: solid 1px #aaa; border-radius: 10px; padding: 20px;">
-            <div class="col-sm-12 col-lg-6">
+        <div class="row align-items-center" style="border: solid 1px #aaa; border-radius: 10px;">
+            <div class="col-sm-12 col-lg-6 p-3">
                 <div class="guide d-none">
                     <div class="row">
                         <div class="col-xs-12">
@@ -68,8 +68,8 @@
                             </div>
                             #}
 
-                            <button type="button" class="btn btn-link mb-0" href="https://t.me/navcrm" target="_blank" style="width: 100%;">Связаться с разработчиками</button>
-                            <button type="button" class="mb-0 btn btn-link" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="auto" data-bs-html="true" data-bs-trigger="focus" data-bs-title="<p>Уведомление о cookie и сборе (обработке) персональных данных" style="width: 100%;"data-bs-content="Администрация сайта информирует, что при использовании данного сайта не осуществляется сбор, хранение и обработка персональных данных пользователей.</p>
+                            <a type="button" class="btn btn-link p-0" href="https://t.me/navcrm" target="_blank" style="width: 100%;">Связаться с разработчиками</a>
+                            <button type="button" class="p-0 btn btn-link" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="auto" data-bs-html="true" data-bs-trigger="focus" data-bs-title="<p>Уведомление о cookie и сборе (обработке) персональных данных" style="width: 100%;"data-bs-content="Администрация сайта информирует, что при использовании данного сайта не осуществляется сбор, хранение и обработка персональных данных пользователей.</p>
             <p>Техническая информация (например cookie) используется в обезличенной форме в целях обеспечения работы сайта. Продолжая использовать данный сайт, Вы соглашаетесь с использованием cookie.</p>
             <p>В случае изменения политики в отношении персональных данных данное уведомление будет обновлено и пользователи будут своевременно информированы.</p>">
                                 Политика конфиденциальности
@@ -79,8 +79,8 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-lg-6 text-center">
-                <img src="assets/logo.jpg" style="max-width: 100%; max-height: 100%;">
+            <div class="col-sm-12 col-lg-6 login-image-container">
+                <img src="{{ asset('img/' ~ random(['logo1.jpg', 'logo2.jpg', 'logo3.jpg'])) }}" class="img-fluid">
             </div>
         </div>
     </div>
