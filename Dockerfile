@@ -31,6 +31,7 @@ RUN set -eux; \
 		zip \
         pdo \
         pdo_mysql \
+        xml \
 	;
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
