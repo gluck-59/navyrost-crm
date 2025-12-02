@@ -178,6 +178,12 @@
                     }
                 };
 
+                // Устанавливаем фокус на поле ввода суммы после полного отображения модального окна
+                paymentModalEl.addEventListener('shown.bs.modal', (event) => {
+                    const amountInput = document.getElementById('paymentModalAmount');
+                    if (amountInput) amountInput.focus();
+                });
+
                 paymentModalEl.addEventListener('show.bs.modal', (event) => {
                     paymentHistoryUpdatedFlag = false;
                     const trigger = event.relatedTarget;
@@ -226,7 +232,7 @@
                         }
 
                         const sumValue = (amountInput.value ?? '').trim();
-                        if (sumValue === '') {
+                        if (sumValue === '' || sumValue === '0') {
                             return;
                         }
 
