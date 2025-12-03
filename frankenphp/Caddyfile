@@ -1,55 +1,65 @@
-# Глобальная конфигурация
 {
-    http_port 80
-    https_port 443
-    auto_https off
+	skip_install_trust
+
+	{$CADDY_GLOBAL_OPTIONS}
+
+	frankenphp {
+		{$FRANKENPHP_CONFIG}
+
+		worker {
+			file ./public/index.php
+			env APP_RUNTIME Runtime\FrankenPhpSymfony\Runtime
+			{$FRANKENPHP_WORKER_CONFIG}
+		}
+	}
 }
 
-# HTTP сервер с редиректом на HTTPS
-http:// {
-    redir https://{host}{uri} permanent
-}
+{$CADDY_EXTRA_CONFIG}
 
-# HTTPS сервер
-https:// {
-    # Listen on all interfaces
-    bind 0.0.0.0
-    
-    # Используем самоподписанный сертификат
-    tls /etc/caddy/certs/192.168.88.220.crt /etc/caddy/certs/192.168.88.220.key {
-        protocols tls1.2 tls1.3
-        curves x25519 secp256r1 secp384r1
-        ciphers TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-    }
-    
-    # Set root directory
-    root * /var/www/html/public
-    
-    # Handle static files
-    @static {
-        not path_regexp ^(.*\.php|/index\.php/.*)$
-    }
-    
-    handle @static {
-        file_server
-    }
-    
-    # Handle PHP files
-    php {
-        root /var/www/html/public
-        resolve_root_symlink
-        env APP_ENV "dev"
-        env APP_DEBUG "1"
-    }
-    
-    # Handle all other requests
-    try_files {path} /index.php{query}
-    
-    # Security headers
-    header {
-        X-Frame-Options "SAMEORIGIN"
-        X-Content-Type-Options "nosniff"
-        # Enable HSTS for HTTPS
-        Strict-Transport-Security "max-age=31536000;"
-    }
+{$SERVER_NAME:localhost} {
+	log {
+		{$CADDY_SERVER_LOG_OPTIONS}
+		# Redact the authorization query parameter that can be set by Mercure
+		format filter {
+			request>uri query {
+				replace authorization REDACTED
+			}
+		}
+	}
+
+	root /app/public
+	encode zstd br gzip
+
+	mercure {
+		# Publisher JWT key
+		publisher_jwt {env.MERCURE_PUBLISHER_JWT_KEY} {env.MERCURE_PUBLISHER_JWT_ALG}
+		# Subscriber JWT key
+		subscriber_jwt {env.MERCURE_SUBSCRIBER_JWT_KEY} {env.MERCURE_SUBSCRIBER_JWT_ALG}
+		# Allow anonymous subscribers (double-check that it's what you want)
+		anonymous
+		# Enable the subscription API (double-check that it's what you want)
+		subscriptions
+		# Extra directives
+		{$MERCURE_EXTRA_DIRECTIVES}
+	}
+
+	vulcain
+
+	{$CADDY_SERVER_EXTRA_DIRECTIVES}
+
+	# Disable Topics tracking if not enabled explicitly: https://github.com/jkarlin/topics
+	header ?Permissions-Policy "browsing-topics=()"
+
+	@phpRoute {
+		not path /.well-known/mercure*
+		not file {path}
+	}
+	rewrite @phpRoute index.php
+
+	@frontController path index.php
+	php @frontController
+
+	file_server {
+		hide *.php
+	}
 }
