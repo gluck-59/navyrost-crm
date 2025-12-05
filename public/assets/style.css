@@ -72,20 +72,20 @@ h6.text-muted {
     font-size: 0.7rem;
     text-transform: uppercase;
     /*margin-bottom: 0;*/
-    #footer {
-        position: fixed;
-        bottom: 0px;
-        left: 0;
-        right: 0;
-        border-top-color: var(--bs-border-color);
-        border-top-width: 1px;
-        border-top-style: solid;
-        margin: 0;
-    }
     line-height: 1;
 }
 
 
+#footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    border-top-color: var(--bs-border-color);
+    border-top-width: 1px;
+    border-top-style: solid;
+    margin: 0;
+}
 
 
 /*request edit*/

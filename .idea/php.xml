@@ -195,9 +195,4 @@
     </phpInfoCache>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.4" />
-  <component name="PhpUnit">
-    <phpunit_settings>
-      <phpunit_by_interpreter interpreter_id="bc3bd703-ed13-4b08-a245-3c880ffa4645" load_method="PHPUNIT_PHAR" custom_loader_path="/Users/gluck/Sites/symfony-docker/vendor/autoload.php" phpunit_phar_path="/var/www/html/vendor/phpunit" />
-    </phpunit_settings>
-  </component>
 </project>

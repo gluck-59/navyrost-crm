@@ -21,7 +21,7 @@
                                 data-live-search="true"
                                 data-show-subtext="true"
                             >
-                                <option value="" disabled>Выберите заявку</option>
+                                <option value="" selected disabled>Выберите заявку</option>
                                 {% for requestItem in modalPaymentRequests %}
                                     <option value="{{ requestItem.id }}" data-subtext="{{ requestItem.customer }}">{{ requestItem.label }}</option>
                                 {% endfor %}
@@ -242,7 +242,7 @@
                         if (paymentModalEl.dataset.paymentSource === 'main') {
                             requestId = Number.parseInt(requestSelect?.value ?? '', 10);
                             if (!Number.isInteger(requestId) || requestId <= 0) {
-                                showToast('Необходимо указать заявку', 'error');
+                                showToast('Необходимо указать заявку', 'danger');
                                 return;
                             }
 
