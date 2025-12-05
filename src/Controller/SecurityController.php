@@ -42,10 +42,10 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         if ($this->getUser()) {
-            prettyDump($this->getUser());
+//            prettyDump($this->getUser());
             return $this->redirect('/customer');
         } else {
-            prettyDump($this->getUser());
+//            prettyDump($this->getUser());
             return $this->render('security/login.html.twig', [
                 'last_username' => $lastUsername,
                 'title' => 'Войдите',
