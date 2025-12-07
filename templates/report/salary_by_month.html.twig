@@ -18,7 +18,7 @@
                             {% for row in rows %}
                                 <tr>
                                     <td>{{ row.month|capitalize }}</td>
-                                    <td class="text-end">{{ row.sum|number_format(0, ',', ' ') }}</td>
+                                    <td class="text-end money">{{ row.sum|number_format(0, ',', ' ') }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>

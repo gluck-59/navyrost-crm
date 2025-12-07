@@ -49,7 +49,7 @@
                                     </td>
                                     {% set requestBalanceRaw = request_balances[request.id]|default(0) %}
                                     {% set requestBalanceRub = (requestBalanceRaw / 100)|money_rub %}
-                                    {% set badgeClass = requestBalanceRaw > 0 ? 'bg-success' : (requestBalanceRaw < 0 ? 'bg-danger' : 'bg-secondary') %}
+                                    {% set badgeClass = requestBalanceRaw > 0 ? 'bg-success money' : (requestBalanceRaw < 0 ? 'bg-danger money' : 'bg-secondary money') %}
                                     <td>
                                         <span class="badge {{ badgeClass }}">
                                             {{ requestBalanceRub }}

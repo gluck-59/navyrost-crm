@@ -97,6 +97,10 @@ h6.text-muted {
     width: 110px;
 }
 
+.money {
+    white-space: nowrap;
+}
+
 #paymentModalAmount {
     zoom: 3;
     border-color: white;

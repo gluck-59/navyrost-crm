@@ -52,7 +52,7 @@ class SiteControllerTest extends TestCase
         return $controller;
     }
 
-    public function testMainForGuest(): void
+    public function testGuest(): void
     {
         // Create a controller with no user (not authenticated)
         $controller = $this->createController(null);
@@ -69,7 +69,7 @@ class SiteControllerTest extends TestCase
         $this->assertEquals('Главная', $response->headers->get('X-Robots-Tag'));
     }
 
-    public function testMainForUser(): void
+    public function testUser(): void
     {
         // Create a mock user
         $user = $this->createMock(User::class);
@@ -120,7 +120,7 @@ class SiteControllerTest extends TestCase
         $this->assertEquals('Главная', $response->headers->get('X-Robots-Tag'));
     }
 
-    public function testMainForAdmin(): void
+    public function testAdmin(): void
     {
         // Create a mock user
         $user = $this->createMock(User::class);
