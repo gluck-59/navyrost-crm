@@ -5,16 +5,50 @@ services:
     build:
       context: .
       target: frankenphp_prod
-    environment:
-      APP_SECRET: ${APP_SECRET}
-      MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET}
-      MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET}
-      # Use an explicit prod DATABASE_URL from env/secret store
-      DATABASE_URL: ${DATABASE_URL}
 
-  database:
+    restart: unless-stopped
     environment:
+      SERVER_NAME: navcrm.local
+      DEFAULT_URI: http://navcrm.local
+      MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      MERCURE_URL: http://navcrm.local/.well-known/mercure
+      MERCURE_PUBLIC_URL: http://navcrm.local/.well-known/mercure
+      MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      GODEBUG: http2server=0
+      GOTRACEBACK: single
+      DATABASE_URL: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@database:3306/${MYSQL_DATABASE}?serverVersion=${MYSQL_VERSION:-8.4}&charset=${MYSQL_CHARSET:-utf8mb4}
+      SYMFONY_VERSION: ${SYMFONY_VERSION:-}
+      STABILITY: ${STABILITY:-stable}
+    env_file:
+      - .env
+      - .env.dev
+    volumes:
+      - .:/var/www/html
+      - ./frankenphp/certs:/etc/caddy/certs
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: host
+  database:
+    image: mysql:${MYSQL_VERSION:-8}
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    env_file:
+      - .env
+      - .env.dev
+    volumes:
+      - database_data:/var/lib/mysql:rw
+volumes:
+  caddy_data: {}
+  caddy_config: {}
+  database_data: {}
