@@ -8,6 +8,9 @@ framework:
     #esi: true
     #fragments: true
 
+    trusted_proxies: '%env(TRUSTED_PROXIES)%'
+    trusted_headers: ['x-forwarded-for', 'x-forwarded-proto', 'x-forwarded-host']
+
     set_locale_from_accept_language: true
     set_content_language_from_locale: true
     enabled_locales: [ 'ru', 'en' ]
@@ -18,3 +21,4 @@ when@test:
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
+
