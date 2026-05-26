@@ -28,16 +28,6 @@ services:
     volumes:
       - .:/var/www/html
       - ./frankenphp/certs:/etc/caddy/certs
-    ports:
-      # Пробрасываем порт 80 контейнера на все интерфейсы хоста
-      - target: 80
-        published: 80
-        protocol: tcp
-        mode: host
-      - target: 443
-        published: 443
-        protocol: tcp
-        mode: host
 
 
 # Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
