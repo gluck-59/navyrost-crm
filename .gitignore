@@ -1,8 +1,11 @@
-### docker ###
+/.env
 /compose.override.yaml
+/compose.override.yml
 /compose.prod.yaml
+/compose.prod.yml
 /Dockerfile
 /.dockerignore
+/frankenphp/Caddyfile
 
 ###> symfony/framework-bundle ###
 /.env
