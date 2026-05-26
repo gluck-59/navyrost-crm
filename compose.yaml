@@ -37,6 +37,7 @@ services:
 ###> doctrine/doctrine-bundle ###
   database:
     image: mysql:${MYSQL_VERSION:-8}
+    restart: unless-stopped
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_DATABASE: ${MYSQL_DATABASE}
