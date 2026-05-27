@@ -16,6 +16,8 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+/mysql-ca.pem
+
 ###> phpunit/phpunit ###
 /phpunit.xml
 /.phpunit.cache/
