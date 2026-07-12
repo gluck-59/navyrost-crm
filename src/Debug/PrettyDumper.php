@@ -7,7 +7,7 @@ final class PrettyDumper
     public static function render(mixed $data = null, bool $die = false, bool $showStack = false): string
     {
         $isLocal = (
-            (isset($_SERVER['SERVER_ADDR']) && in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost'], true))
+            (isset($_SERVER['SERVER_NAME']) && in_array($_SERVER['SERVER_NAME'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost'], true))
             || in_array((string) getenv('SERVER_NAME'), ['localhost'], true)
         );
 
@@ -22,7 +22,6 @@ final class PrettyDumper
             $out .= htmlspecialchars(print_r($stack, true));
         }
 
-        //@TODO refucktor
         if (($stack[0]['function'] ?? null) === 'prettyDump') {
             $out .=  'prettyDump() из ' . ($stack[1]['file'] ?? '') . ' строка ' . ($stack[1]['line'] ?? '') . '<br>';
         } else {
